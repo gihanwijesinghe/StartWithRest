@@ -6,6 +6,8 @@
 package service;
 
 import entity.User;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,8 +21,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 /**
  *
@@ -60,6 +64,32 @@ public class UserFacadeREST extends AbstractFacade<User> {
     {
         return super.readData(id);
     }
+    
+    @POST
+    @Path("addUser")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response addUser(@FormParam("username") String username) throws URISyntaxException{
+        java.net.URI location = new java.net.URI("../index.html");
+        return Response.temporaryRedirect(location).build();
+    }
+    
+    @POST
+    @Path("switchTOHome")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response switchToHome(@FormParam("username") String username) throws URISyntaxException{
+        
+        java.net.URI location = new java.net.URI("../readData.jsp");
+        return Response.temporaryRedirect(location).build();
+    }
+    
+    @POST
+    @Path("testing1")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces("text/plain")
+    public Response addUsernew(@FormParam("user") String name,@FormParam("age") String age){
+        return Response.status(200).entity("addUser is called, name : " + name + ", age : " + age).build();
+    }    
+
 
     @PUT
     @Path("{id}")

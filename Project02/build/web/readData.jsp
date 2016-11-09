@@ -1,17 +1,18 @@
+<%-- 
+    Document   : index
+    Created on : Nov 9, 2016, 12:49:56 PM
+    Author     : Gihan
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Neth Fm</title>
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>Your in the Home Page</h1></Br>
         <div>
             <form method="post" action="/Project02/webresources/entity.user/Postme">
                 User :<input type="text" name="user">
@@ -24,7 +25,9 @@ and open the template in the editor.
                 Insert ID :<input type="text" name="user">
                 <input type="submit">
             </form>
+        </div></Br>
+        <div>
+            <a href="/Project02/webresources/entity.user">Continue</a>
         </div>
-                
     </body>
 </html>
