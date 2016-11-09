@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package presentation;
 
 import entity.User;
 import java.util.List;
@@ -14,12 +14,12 @@ import javax.ws.rs.core.Response;
  *
  * @author Gihan
  */
-public abstract class AbstractFacade<T> {
+public abstract class Wrapper<T> {
 
     private Class<T> entityClass;
     Helper helper = new Helper();
 
-    public AbstractFacade(Class<T> entityClass) {
+    public Wrapper(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 

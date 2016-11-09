@@ -35,12 +35,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "user_ID")
-    private Integer userID;
-    @Size(max = 15)
+    private int userID;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "user_name")
     private String userName;
     @Size(max = 15)
@@ -59,15 +61,20 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer userID) {
+    public User(String userName) {
+        this.userName = userName;
+    }
+
+    public User(String userName, int userID) {
+        this.userName = userName;
         this.userID = userID;
     }
 
-    public Integer getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -114,7 +121,7 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (userID != null ? userID.hashCode() : 0);
+        hash += (userName != null ? userName.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +132,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.userID == null && other.userID != null) || (this.userID != null && !this.userID.equals(other.userID))) {
+        if ((this.userName == null && other.userName != null) || (this.userName != null && !this.userName.equals(other.userName))) {
             return false;
         }
         return true;
@@ -133,7 +140,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.User[ userID=" + userID + " ]";
+        return "entity.User[ userName=" + userName + " ]";
     }
     
 }

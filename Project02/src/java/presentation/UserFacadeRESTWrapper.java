@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package presentation;
 
 import entity.User;
 import java.net.URI;
@@ -31,13 +31,13 @@ import javax.ws.rs.core.UriBuilder;
  * @author Gihan
  */
 @Stateless
-@Path("entity.user")
-public class UserFacadeREST extends AbstractFacade<User> {
+@Path("entity.userpresentation")
+public class UserFacadeRESTWrapper extends Wrapper<User> {
 
     @PersistenceContext(unitName = "Project02PU")
     private EntityManager em;
 
-    public UserFacadeREST() {
+    public UserFacadeRESTWrapper() {
         super(User.class);
     }
 
@@ -82,9 +82,9 @@ public class UserFacadeREST extends AbstractFacade<User> {
 //            java.net.URI location = new java.net.URI("../readData.jsp");
 //            return Response.temporaryRedirect(location).build();
 //        }
-//        String error = "Login Failed";
-//        return Response.ok(error).build();
-        return super.userLogin(username, password);
+        String error = "Login Failed";
+        return Response.ok(error).build();
+//        return super.userLogin(username, password);
     }
     
 //    @POST
