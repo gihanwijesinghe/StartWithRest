@@ -29,6 +29,7 @@ public abstract class Wrapper<T> {
         getEntityManager().persist(entity);
     }
     
+    /*Testing method for get user xml or json version*/
     public T getDataUser(Object id) {
         T t = find(id);
         if(helper.readValidation((User)t) == 10){
@@ -39,7 +40,8 @@ public abstract class Wrapper<T> {
         }
     }
     
-    public String readData(Object id) {
+    /*Reading data for a given user*/
+    public String readData(String id) {
         T t = find(id);
         User user = new User();
         try{
@@ -56,6 +58,7 @@ public abstract class Wrapper<T> {
         }
     }
     
+    /*Printing User object's data in plain text*/
     public String printStream(User user){
         String s;
         StringBuilder sb = new StringBuilder();
@@ -67,47 +70,26 @@ public abstract class Wrapper<T> {
         return s;
     }
     
-        public Response userLogin(String username, String password){
-            Object id = Integer.parseInt(username);
-            T t = find(id);
-            User user = new User();
-            try{
-                user = (User)t;
-                //return helper.loginValidation(user, password);
-                if(helper.loginValidation(user, password) == 1){            
-                    java.net.URI location = new java.net.URI("../readData.jsp");
-                    return Response.temporaryRedirect(location).build();
-                }
-                else{
-                    String error = "Password Incorrect";
-                    return Response.ok(error).build();          
-                }  
-
+    /*user login method, returning which page to map*/
+    public Response userLogin(String username, String password){
+        T t = find(username);
+        User user = new User();
+        try{
+            user = (User)t;
+            if(helper.loginValidation(user, password) == 1){  //Checking the validations of user          
+                java.net.URI location = new java.net.URI("../readData.jsp");
+                return Response.temporaryRedirect(location).build();
             }
-            catch(Exception e){
-                String error = "Username incorrect, Please try again";
-                return Response.ok(error).build();
-            }
+            else{
+                String error = "Password Incorrect";
+                return Response.ok(error).build();          
+            }  
         }
-    
-//    public int userLogin(String username, String password){
-//        Object id = Integer.parseInt(username);
-//        T t = find(id);
-//        User user = new User();
-//        try{
-//            user = (User)t;
-//            return helper.loginValidation(user, password);
-////            if(helper.loginValidation(user, password) == 1){            
-////                return 1;
-////            }
-////            else{
-////                return 0;           
-////            }           
-//        }
-//        catch(Exception e){
-//            return 0;
-//        }
-//    }
+        catch(Exception e){
+            String error = "Username incorrect, Please try again";
+            return Response.ok(error).build();
+        }
+    }
     
     public void edit(T entity) {
         getEntityManager().merge(entity);
