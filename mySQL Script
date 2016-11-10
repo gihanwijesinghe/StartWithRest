@@ -1,0 +1,13 @@
+Database Script;
+
+create database user;
+use user;
+
+create table user (user_Id INT(10),
+                    user_name VARCHAR(),
+                    user_PWD VARCHAR(),
+                    readValidation VARCHAR(1),
+                    createValidation VARCHAR(1),
+                    modifyValidation VARCHAR(1),
+                    PRIMARY KEY (user_name));
+                    
