@@ -60,6 +60,13 @@ public class UserFacadeRESTWrapperNew extends WrapperNew<User> {
     public Response switchToHomeNew(@FormParam("username") String username, @FormParam("password") String password) throws URISyntaxException{
         return super.userLoginNew(username, password);
     }
+    @POST
+    @Path("checkDelete")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void deleteNew(@FormParam("username") String username){
+        System.out.println("inside the checkDelete");
+        super.deleteNew(super.findNew(username));
+    }
 //
 //    @PUT
 //    @Path("{id}")
@@ -70,8 +77,8 @@ public class UserFacadeRESTWrapperNew extends WrapperNew<User> {
 //
 //    @DELETE
 //    @Path("{id}")
-//    public void remove(@PathParam("id") String id) {
-//        super.remove(super.find(id));
+//    public void removeNew(@PathParam("id") String id) {
+//        super.deleteNew(super.findNew(id));
 //    }
 //
     @GET

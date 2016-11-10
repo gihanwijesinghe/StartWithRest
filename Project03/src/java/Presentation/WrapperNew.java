@@ -36,11 +36,16 @@ public abstract class WrapperNew<T> extends AbstractFacade<T>{
         super.create(entity);
     }
     
+    public void deleteNew(T entity){
+        super.remove(entity);
+    }
+    
     /*Testing method for get user xml or json version*/
     public T getDataUser(Object id) {
         T t = find(id);
         if(helper.readValidation((User)t) == 10){
-            return getEntityManager().find(entityClass, id);
+            return super.find(id);
+//            return getEntityManager().find(entityClass, id);
         }
         else{
             return (T)"You don't have authentication";           

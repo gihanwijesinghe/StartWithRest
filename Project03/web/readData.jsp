@@ -14,8 +14,8 @@
     <body>
         <h1>Your in the Home Page</h1></Br>
         <div>
-            <form method="post" action="/Project02/webresources/pesentNew/Postme">
-                User :<input type="text" name="user">
+            <form method="GET" action="/Project03/webresources/present/gihan">
+                get User XML(default gives gihan) :<input type="text" name="user">
                 <input type="submit">
             </form>
         </div></Br>
@@ -26,8 +26,22 @@
                 <input type="submit">
             </form>
         </div></Br>
+        
+<!--        <div>
+            <form method="delete" action="/Project03/webresources/presentNew/gihan">
+                <p> Read Data </p></Br>
+                Insert username :<input type="text" name="user">
+                <input type="submit">
+            </form>
+            Delete gihan account
+            <a href="/Project03/webresources/presentNew/gihan">Delete</a>
+        </div>-->
         <div>
-            <a href="/Project03/webresources/presentNew">Continue</a>
+            <form method="post" action="/Project03/webresources/presentNew/checkDelete">
+                <p> Delete Data </p></Br>
+                Insert username :<input type="text" name="username">
+                <input type="submit">
+            </form>
         </div>
     </body>
 </html>
