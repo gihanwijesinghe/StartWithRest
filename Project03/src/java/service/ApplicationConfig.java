@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(presentation.UserFacadeRESTWrapper.class);
+        resources.add(presentation.UserFacadeRESTWrapperNew.class);
         resources.add(service.UserFacadeREST.class);
     }
     

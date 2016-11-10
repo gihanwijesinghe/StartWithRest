@@ -14,20 +14,20 @@
     <body>
         <h1>Your in the Home Page</h1></Br>
         <div>
-            <form method="post" action="/Project02/webresources/entity.user/Postme">
+            <form method="post" action="/Project02/webresources/pesentNew/Postme">
                 User :<input type="text" name="user">
                 <input type="submit">
             </form>
         </div></Br>
         <div>
-            <form method="post" action="/Project03/webresources/present/Postme/readData">
+            <form method="post" action="/Project03/webresources/presentNew/Postme/readData">
                 <p> Read Data </p></Br>
                 Insert username :<input type="text" name="user">
                 <input type="submit">
             </form>
         </div></Br>
         <div>
-            <a href="/Project03/webresources/present">Continue</a>
+            <a href="/Project03/webresources/presentNew">Continue</a>
         </div>
     </body>
 </html>

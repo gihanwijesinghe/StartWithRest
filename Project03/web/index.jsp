@@ -109,7 +109,7 @@ text-align: center;
 <div class="login-block">
 	
     <h1>Login</h1>
-	<form action="/Project03/webresources/present/switchTOHome" method="post">
+	<form action="/Project03/webresources/presentNew/switchTOHome" method="post">
 		<input type="text" value="" placeholder="Username" id="username" name="username" />
 		<input type="password" value="" placeholder="Password" id="password" name="password" />
 		<button>Login</button>

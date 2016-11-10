@@ -10,24 +10,30 @@ import service.AbstractFacade;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.ws.rs.core.Response;
+import presentation.Helper;
 
 /**
  *
  * @author Gihan
  */
-public abstract class Wrapper<T> {
+public abstract class WrapperNew<T> extends AbstractFacade<T>{
 
-    private Class<T> entityClass;
-    Helper helper = new Helper();
-
-    public Wrapper(Class<T> entityClass) {
-        this.entityClass = entityClass;
+    public WrapperNew(Class<T> entityClass) {
+        super(entityClass);
     }
 
-    protected abstract EntityManager getEntityManager();
+//    private Class<T> entityClass;
+    Helper helper = new Helper();
 
-    public void create(T entity) {
-        getEntityManager().persist(entity);
+//    public WrapperNew(Class<T> entityClass) {
+//        this.entityClass = entityClass;
+//    }
+
+//    protected EntityManager getEntityManager();
+
+    public void createNew(T entity) {
+        //getEntityManager().persist(entity);
+        super.create(entity);
     }
     
     /*Testing method for get user xml or json version*/
@@ -42,13 +48,13 @@ public abstract class Wrapper<T> {
     }
     
     /*Reading data for a given user*/
-    public String readData(String id) {
-        T t = find(id);
+    public String readDataNew(String id) {
+        T t = findNew(id);
         User user = new User();
         try{
             user = (User)t;
             if(helper.readValidation(user) == 10){            
-                return printStream(user);
+                return printStreamNew(user);
             }
             else{
                 return "You don't have authentication";           
@@ -60,7 +66,7 @@ public abstract class Wrapper<T> {
     }
     
     /*Printing User object's data in plain text*/
-    public String printStream(User user){
+    public String printStreamNew(User user){
         String s;
         StringBuilder sb = new StringBuilder();
             //s = user.getUserPwd();
@@ -72,7 +78,7 @@ public abstract class Wrapper<T> {
     }
     
     /*user login method, returning which page to map*/
-    public Response userLogin(String username, String password){
+    public Response userLoginNew(String username, String password){
         T t = find(username);
         User user = new User();
         try{
@@ -91,40 +97,15 @@ public abstract class Wrapper<T> {
             return Response.ok(error).build();
         }
     }
-    
-    public void edit(T entity) {
-        getEntityManager().merge(entity);
+
+    public T findNew(Object id) {
+        //return getEntityManager().find(entityClass, id);
+        System.out.println("goodwork");
+        return super.find(id);
     }
 
-    public void remove(T entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
-    }
-
-    public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
-    }
-
-    public List<T> findAll() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
-    }
-
-    public List<T> findRange(int[] range) {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(entityClass));
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        q.setMaxResults(range[1] - range[0] + 1);
-        q.setFirstResult(range[0]);
-        return q.getResultList();
-    }
-
-    public int count() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
-        cq.select(getEntityManager().getCriteriaBuilder().count(rt));
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
+    public int countNew() {
+        return super.count();
     }
     
 }
