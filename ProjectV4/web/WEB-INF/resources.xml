@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="pmsv4" type="javax.sql.DataSource">#Fri Nov 11 10:58:45 IST 2016
+jdbcDriver=com.mysql.jdbc.Driver
+password=Gihan@123
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/pms?zeroDateTimeBehavior\=convertToNull
+</Resource>
+</resources>
